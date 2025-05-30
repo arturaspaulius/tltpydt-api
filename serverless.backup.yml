@@ -1,7 +1,19 @@
-org: arturaspaulius
-app: aws-tlt-civilization-tornament
-service: aws-tlt-civilization-tornament
-frameworkVersion: '3'
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: civ-serverless-api
+
+frameworkVersion: "3"
 
 plugins:
   - serverless-prune-plugin
@@ -367,4 +379,3 @@ resources:
         QueueName: ${self:custom.resourcePrefix}global-stats-update.fifo
         FifoQueue: true
         ContentBasedDeduplication: true
-
