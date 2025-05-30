@@ -8,14 +8,21 @@ import { AnyItem } from 'dynamoose/dist/Item';
 import { Query, Scan } from 'dynamoose/dist/ItemRetriever';
 import { Config } from '../config';
 
-dynamooseAws.ddb.set(
-  new dynamooseAws.ddb.DynamoDB({
-    region: Config.region
-  })
-);
+if (Config.runningLocal) {
+  // When running locally, we want to use the local DynamoDB instance
+  dynamooseAws.ddb.local();
+} else {
+  dynamooseAws.ddb.set(
+    new dynamooseAws.ddb.DynamoDB({
+      region: Config.region
+    })
+  );
+}
 
 Table.defaults.set({
-  create: false
+  create: true,
+  update: true,
+  waitForActive: false
 });
 
 export interface IRepository<TKey, TEntity> {
